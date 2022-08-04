@@ -22,13 +22,22 @@ function App() {
 			label: 'info',
 			icon: (<HelpIcon/>),
 			route: 'about',
-		}
+		},
 	]
   
+  const containerStyle = {
+	minHeight: '100%',
+    width: '80%',
+    margin: 'auto',
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexFlow: 'wrap',
+  }
+  
   return (
-  	<Box display="flex" justify-content="space-around">
+  	<Box sx={containerStyle}>
   		{routes.map((r) => (
-  			<HomeButton label={r.label} icon={r.icon} onClick={() => navigate(r.route)}/>
+  			<HomeButton key={r.label} label={r.label} icon={r.icon} onClick={() => navigate(r.route)}/>
   		))}
   	</Box>
   )

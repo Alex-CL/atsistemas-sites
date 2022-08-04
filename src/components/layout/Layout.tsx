@@ -21,7 +21,7 @@ export const Layout = (props: LayoutProps) => {
 	  
 
 	return (
-		<div style={{ background: "#F2F2F2", height: "100vh" }}>
+		<div style={{ background: "#F2F2F2", minHeight: "100vh" }}>
 			<Container maxWidth="md">
 			  <Typography sx={title} gutterBottom>
 				Sites
