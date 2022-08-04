@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import HelpIcon from '@mui/icons-material/Help';
-import { HomeButton } from '../components/homeButton/HomeButton'
+import { HomeButton } from '../components'
 
 export function Home() {
 

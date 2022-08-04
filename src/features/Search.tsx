@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Site } from '../models'
-import { SiteService } from '../services/SiteService'
+import { SiteService } from '../services'
 
 const siteService = new SiteService();
 
@@ -20,7 +20,7 @@ export const Search = () => {
 
 	return (
 		<ul>
-			{items.map((i) => (<li>{i.name}</li>))}
+			{items.map((i) => (<li key={i.id}>{i.name}</li>))}
 		</ul>
 	)
 }
