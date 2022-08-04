@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Container, Typography, Box, Paper, Icon } from '@mui/material'
+import { Container, Typography, Paper } from '@mui/material'
 
 type LayoutProps = {
 	children: ReactNode
