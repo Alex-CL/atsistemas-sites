@@ -1,1 +1,1 @@
-export { Site } from './Site'
+export { Site, type SiteDTO } from './Site'

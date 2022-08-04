@@ -1,4 +1,4 @@
-type SiteDTO = {
+export type SiteDTO = {
 	id: string,
 	name: string,
 	path: string,
