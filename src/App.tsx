@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 function App() {
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
 	const routes = [
 		{
