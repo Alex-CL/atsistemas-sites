@@ -1,7 +1,7 @@
-import App from '../../App'
+import { Home as H } from '../../features'
 
 export function Home() {
 	return (
-		<App />
+		<H />
 	)
 }

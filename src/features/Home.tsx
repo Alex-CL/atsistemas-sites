@@ -1,11 +1,11 @@
+import { useNavigate } from 'react-router-dom'
 import { Box } from '@mui/material'
-import { HomeButton } from './components/homeButton/HomeButton'
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import HelpIcon from '@mui/icons-material/Help';
-import { useNavigate } from 'react-router-dom'
+import { HomeButton } from '../components/homeButton/HomeButton'
 
-function App() {
+export function Home() {
 
   const navigate = useNavigate();
 
@@ -42,5 +42,3 @@ function App() {
   	</Box>
   )
 }
-
-export default App;
