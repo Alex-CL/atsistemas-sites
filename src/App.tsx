@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Box } from '@mui/material'
+import { HomeButton } from './components/homeButton/HomeButton'
+import SearchIcon from '@mui/icons-material/Search';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import HelpIcon from '@mui/icons-material/Help';
+import { useNavigate } from 'react-router-dom'
 
 function App() {
+
+  let navigate = useNavigate();
+
+	const routes = [
+		{
+			label: 'search',
+			icon: (<SearchIcon/>),
+			route: 'search',
+		}, {
+			label: 'create',
+			icon: (<AddCircleOutlineIcon/>),
+			route: 'create',
+		}, {
+			label: 'info',
+			icon: (<HelpIcon/>),
+			route: 'about',
+		}
+	]
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  	<Box display="flex" justify-content="space-around">
+  		{routes.map((r) => (
+  			<HomeButton label={r.label} icon={r.icon} onClick={() => navigate(r.route)}/>
+  		))}
+  	</Box>
+  )
 }
 
 export default App;
