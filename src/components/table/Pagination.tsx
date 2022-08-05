@@ -2,7 +2,7 @@ import React from 'react'
 import { TablePagination } from '@mui/material'
 import { Pager } from './types'
 
-const rowsPerPageOptions = [10, 20, 50, 100]
+const rowsPerPageOptions = [5, 10, 20]
 
 export function Pagination(props: Pager) {
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(
