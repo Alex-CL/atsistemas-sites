@@ -18,7 +18,7 @@ export class Site {
 		this._key = p.key
 		this._description = p.description
 		this._site = p.site
-		this._createdDate = p.createdDate
+		this._createdDate = new Date(p.createdDate)
 	}
 	
 	get id(): string {
