@@ -43,7 +43,9 @@ export class SiteService implements IApi<Site> {
 	}
 	
 	delete(id: string): Promise<boolean> {
-		return fetch(`${this._api}/site/${id}`)
+		return fetch(`${this._api}/site/${id}`, {
+				method: 'DELETE',
+			})
 			.then(res => res.json())
 			.then(res => true)
 			.catch(res => false)
