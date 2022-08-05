@@ -12,14 +12,14 @@ export class SiteService implements IApi<Site> {
 		return fetch(`${this._api}/sites`)
 			.then(res => res.json())
 			.then(res => 
-				res.map((r: SiteDTO) => new Site(r))
+				res.map((r: SiteDTO) => fromDTO(renameKey<SiteDTO>(r, "_id", "id")))
 			)
 	}
 	
 	getByID(id: string): Promise<Site> {
 		return fetch(`${this._api}/site/${id}`)
 			.then(res => res.json())
-			.then(res => fromDTO(res))
+			.then(res => fromDTO(renameKey<SiteDTO>(res, "_id", "id")))
 	}
 	
 	add(s: Site) {
@@ -50,4 +50,8 @@ export class SiteService implements IApi<Site> {
 			.then(res => true)
 			.catch(res => false)
 	}
+}
+
+function renameKey<T>(obj: T, oldKey: string, newKey: string): T {
+  return JSON.parse(JSON.stringify(obj).split(oldKey).join(newKey))
 }
