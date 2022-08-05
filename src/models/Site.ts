@@ -8,7 +8,7 @@ export class Site {
 	private _key: string
 	private _description: string
 	private _site: string
-	private readonly _createdDate: Date
+	private readonly _createDate: Date
 	
 	constructor(p: SiteDTO) {
 		this._id = p.id
@@ -18,7 +18,7 @@ export class Site {
 		this._key = p.key
 		this._description = p.description
 		this._site = p.site
-		this._createdDate = new Date(p.createdDate)
+		this._createDate = new Date(p.createDate)
 	}
 	
 	get id(): string {
@@ -73,8 +73,8 @@ export class Site {
 		this._site = s
 	}
 	
-	get createdDate(): Date {
-		return this._createdDate
+	get createDate(): Date {
+		return this._createDate
 	}
 }
 

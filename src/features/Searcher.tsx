@@ -37,9 +37,9 @@ export const Searcher = () => {
 			name: 'publicPath',
 			label: 'Public Path',
 		}, {
-			name: 'createdDate',
+			name: 'createDate',
 			label: 'Created At',
-			renderFunc: (f: Field<Site>, i: Site) => i.createdDate ? i.createdDate.toLocaleString() : '',
+			renderFunc: (f: Field<Site>, i: Site) => i.createDate ? i.createDate.toLocaleString() : '',
 		}
 	]
 	

@@ -9,7 +9,7 @@ export type SiteDTO = {
 	key: string,
 	description: string,
 	site: string,
-	createdDate: Date,
+	createDate: Date,
 }
 
 export function emptySiteDTO(): SiteDTO {
@@ -21,7 +21,7 @@ export function emptySiteDTO(): SiteDTO {
 		key: '',
 		description: '',
 		site: '',
-		createdDate: new Date(),
+		createDate: new Date(),
 	}
 }
 
@@ -34,7 +34,7 @@ export function toDTO(s: Site): SiteDTO {
 		key: s.key,
 		description: s.description,
 		site: s.site,
-		createdDate: s.createdDate,
+		createDate: s.createDate,
 	}
 }
 
