@@ -1,13 +1,4 @@
-export type SiteDTO = {
-	id: string,
-	name: string,
-	path: string,
-	publicPath: string,
-	key: string,
-	description: string,
-	site: string,
-	createdDate: Date,
-}
+import { SiteDTO } from './SiteDTO'
 
 export class Site {
 	private readonly _id: string
