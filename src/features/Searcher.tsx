@@ -9,7 +9,7 @@ import { SiteService } from '../services'
 
 const siteService = new SiteService();
 
-export const Search = () => {
+export const Searcher = () => {
 
 	const [items, setItems] = useState<Site[]>([])
 	const [isLoading, setIsLoading] = useState<boolean>(true)
