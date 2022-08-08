@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import { Box } from '@mui/material'
 import ListAltIcon from '@mui/icons-material/ListAlt'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import HelpIcon from '@mui/icons-material/Help';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import HelpIcon from '@mui/icons-material/Help'
+import { Routes } from '../routes'
 import { HomeButton } from '../components'
 
 export function Home() {
@@ -13,15 +14,15 @@ export function Home() {
 		{
 			label: 'list',
 			icon: (<ListAltIcon/>),
-			route: 'list',
+			route: Routes.LIST,
 		}, {
 			label: 'create',
 			icon: (<AddCircleOutlineIcon/>),
-			route: 'create',
+			route: Routes.CREATE,
 		}, {
 			label: 'info',
 			icon: (<HelpIcon/>),
-			route: 'about',
+			route: Routes.ABOUT,
 		},
 	]
   

@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { Routes as R } from './routes'
 import {
 	About,
 	Home,
@@ -9,12 +10,12 @@ import {
 export const AppRouter = () => {
 	return (
 		<Routes>
-		    <Route path="/" element={<Home />} />
-	        <Route path="about" element={<About />} />
-	        <Route path="create" element={<Form />} />
-	        <Route path="edit/:id" element={<Form />} />
-	        <Route path="details/:id" element={<Form />} />
-	        <Route path="list" element={<List />} />
+		    <Route path={R.HOME} element={<Home />} />
+	        <Route path={R.ABOUT} element={<About />} />
+	        <Route path={R.CREATE} element={<Form />} />
+	        <Route path={R.EDIT_ID} element={<Form />} />
+	        <Route path={R.DETAILS_ID} element={<Form />} />
+	        <Route path={R.LIST} element={<List />} />
     	</Routes>
 	)
 }

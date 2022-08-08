@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router'
 import { AppTable, Field, Actions, Pager } from '../components'
 import { Site } from '../models'
 import { SiteService } from '../services'
+import { Routes } from '../routes'
 
 const siteService = new SiteService();
 
@@ -62,9 +63,9 @@ export const List = () => {
         setRowsPerPage(+event.target.value)
     }
 	
-	const seeSite = (s: Site) => navigate(`/details/${s.id}`)
+	const seeSite = (s: Site) => navigate(Routes.DETAILS + s.id)
 	
-	const editSite = (s: Site) => navigate(`/edit/${s.id}`)
+	const editSite = (s: Site) => navigate(Routes.EDIT + s.id)
 	
 	const deleteSite = () => {}
 
@@ -101,7 +102,7 @@ export const List = () => {
         ],
 	}
 	
-	const goBack = () => navigate('/')
+	const goBack = () => navigate(Routes.HOME)
 
 	const containerStyle = {
 		width: '80%',

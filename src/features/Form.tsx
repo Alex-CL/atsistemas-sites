@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import { Box, TextField, Button } from '@mui/material'
 import SaveIcon from '@mui/icons-material/Save';
 import { useLocation, useNavigate } from 'react-router'
-import { Site, SiteDTO, emptySiteDTO, toDTO } from '../models'
+import { Site, SiteDTO, emptySiteDTO, fromDTO, toDTO } from '../models'
 import { SiteService } from '../services'
+import { Routes } from '../routes'
 
+const ROWS_NUMBER = 5
 const siteService = new SiteService()
 
 type FormProps = {
@@ -57,7 +59,7 @@ export const Form = (props: FormProps) => {
 				value={site[k]}
 				type={k === 'key' ? 'password' : 'text'}
 				onChange={(e) => setSiteChange(k, e.target.value)}
-				rows={multiline ? 5 : 0}
+				rows={multiline ? ROWS_NUMBER : 0}
 				multiline={multiline}
 				size="small"
 				required={true}
@@ -76,16 +78,18 @@ export const Form = (props: FormProps) => {
 		}
 	}
 	
-	const goBack = () => {
-		if (isEditing) {
-			navigate('/list')	
-		} else {
-			navigate('/')
-		}
-	}
+	const goBack = () => navigate(isEditing ? Routes.LIST : Routes.HOME)
 
-	const saveSite = () => {
+	const saveSite = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
 		
+		if (isEditing) {
+			siteService.update(fromDTO(site))
+		
+			return
+		} 
+		
+		siteService.add(fromDTO(site))
 	}
 	
 	const container = {
@@ -116,26 +120,28 @@ export const Form = (props: FormProps) => {
 
 	return (
 		<Box>
-			<Box sx={container}>
-				{Object.keys(site).filter((k) => !excludedKeys.includes(k)).map((k) => {
-				
-				const style = k === 'createDate' ? createDateStyle : {}
-				
-				return (
-					<Box key={k} display="flex" justify-content="space-around">
-						<Box sx={labelStyle}>{transformKey(k)}: </Box>
-						<Box sx={{...valueStyle, ...style}}>{renderField(k as keyof SiteDTO)}</Box>
-					</Box>
-				)})}
-			</Box>
-			<Box sx={buttonContainer}>
-				<Button variant="outlined" color="secondary" onClick={goBack}>
-					Cancel
-				</Button>
-				<Button variant="outlined" endIcon={<SaveIcon />} onClick={saveSite}>
-					Save
-				</Button>
-			</Box>
+			<form onSubmit={saveSite}>
+				<Box sx={container}>
+					{Object.keys(site).filter((k) => !excludedKeys.includes(k)).map((k) => {
+					
+					const style = k === 'createDate' ? createDateStyle : {}
+					
+					return (
+						<Box key={k} display="flex" justify-content="space-around">
+							<Box sx={labelStyle}>{transformKey(k)}: </Box>
+							<Box sx={{...valueStyle, ...style}}>{renderField(k as keyof SiteDTO)}</Box>
+						</Box>
+					)})}
+				</Box>
+				<Box sx={buttonContainer}>
+					<Button variant="outlined" color="secondary" onClick={goBack}>
+						Cancel
+					</Button>
+					<Button variant="outlined" endIcon={<SaveIcon />} type="submit">
+						Save
+					</Button>
+				</Box>
+			</form>
 		</Box>
 	)
 }
