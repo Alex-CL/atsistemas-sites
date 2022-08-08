@@ -62,7 +62,7 @@ export const List = () => {
         setRowsPerPage(+event.target.value)
     }
 	
-	const seeSite = () => {}
+	const seeSite = (s: Site) => navigate(`/details/${s.id}`)
 	
 	const editSite = (s: Site) => navigate(`/edit/${s.id}`)
 	

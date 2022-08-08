@@ -9,6 +9,7 @@ const siteService = new SiteService()
 
 type FormProps = {
 	id?: string
+	readOnly?: boolean
 }
 
 export const Form = (props: FormProps) => {
@@ -19,6 +20,12 @@ export const Form = (props: FormProps) => {
 	
 	const [site, setSite] = useState<SiteDTO>(emptySiteDTO())
 	const [isEditing, setIsEditing] = useState<boolean>(!!props.id)
+	
+	useEffect(() => {
+		if (!props.readOnly && !props.id) {
+			setExcludedKeys([...excludedKeys, 'createDate'])
+		}
+	}, [])
 	
 	useEffect(() => {
 		if (!isEditing || !props.id) {
@@ -33,6 +40,14 @@ export const Form = (props: FormProps) => {
 	const renderField = (k: keyof SiteDTO): JSX.Element => {
 		if (k === 'createDate') {
 			return <>{new Date(site.createDate).toLocaleString()}</>
+		}
+		
+		if (props.readOnly) {
+			return (
+				<p style={{ marginTop: '10px' }}>
+					{site[k]}
+				</p>
+			)
 		}
 		
 		const multiline = k === 'description'
