@@ -1,4 +1,4 @@
 export { About } from './About'
-export { Searcher } from './Searcher'
+export { List } from './List'
 export { Form } from './Form'
 export { Home } from './Home'

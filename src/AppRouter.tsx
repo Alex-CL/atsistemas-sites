@@ -3,7 +3,7 @@ import {
 	About,
 	Home,
 	Form,
-	Search,
+	List,
 } from './pages'
 
 export const AppRouter = () => {
@@ -12,7 +12,7 @@ export const AppRouter = () => {
 		    <Route path="/" element={<Home />} />
 	        <Route path="about" element={<About />} />
 	        <Route path="create" element={<Form />} />
-	        <Route path="search" element={<Search />} />
+	        <Route path="list" element={<List />} />
       </Routes>
 	)
 }

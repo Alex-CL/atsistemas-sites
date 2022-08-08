@@ -11,7 +11,7 @@ import { SiteService } from '../services'
 
 const siteService = new SiteService();
 
-export const Searcher = () => {
+export const List = () => {
 
 	const navigate = useNavigate()
 
