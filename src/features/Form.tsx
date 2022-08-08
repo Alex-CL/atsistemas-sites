@@ -60,6 +60,7 @@ export const Form = (props: FormProps) => {
 				rows={multiline ? 5 : 0}
 				multiline={multiline}
 				size="small"
+				required={true}
 			/>
 		)
 	}
