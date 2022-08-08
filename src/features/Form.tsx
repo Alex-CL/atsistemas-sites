@@ -2,26 +2,31 @@ import { useState, useEffect } from 'react'
 import { Box, TextField, Button } from '@mui/material'
 import SaveIcon from '@mui/icons-material/Save';
 import { useLocation, useNavigate } from 'react-router'
-import { Site, SiteDTO, emptySiteDTO } from '../models'
+import { Site, SiteDTO, emptySiteDTO, toDTO } from '../models'
+import { SiteService } from '../services'
 
-export const Form = () => {
+const siteService = new SiteService()
+
+type FormProps = {
+	id?: string
+}
+
+export const Form = (props: FormProps) => {
 	const location = useLocation()
 	const navigate = useNavigate()
 	
 	const [excludedKeys, setExcludedKeys] = useState<string[]>(['id'])
 	
 	const [site, setSite] = useState<SiteDTO>(emptySiteDTO())
-	const [isEditing, setIsEditing] = useState<boolean>(false)
+	const [isEditing, setIsEditing] = useState<boolean>(!!props.id)
 	
-
 	useEffect(() => {
-		if (location.pathname.endsWith('/create')) {
-			setIsEditing(false)
-			setExcludedKeys([...excludedKeys, 'createDate'])
-		} else {
-			setIsEditing(true)
+		if (!isEditing || !props.id) {
+			return
 		}
-	}, [])
+		
+		siteService.getByID(props.id).then((s) => setSite(toDTO(s)))
+	}, [isEditing])
 	
 	const setSiteChange = (k: string, v: string | Date) => setSite({ ...site, [k]: v })
 
@@ -101,7 +106,7 @@ export const Form = () => {
 				const style = k === 'createDate' ? createDateStyle : {}
 				
 				return (
-					<Box display="flex" justify-content="space-around" sx={{ width: '100%' }}>
+					<Box key={k} display="flex" justify-content="space-around">
 						<Box sx={labelStyle}>{transformKey(k)}: </Box>
 						<Box sx={{...valueStyle, ...style}}>{renderField(k as keyof SiteDTO)}</Box>
 					</Box>

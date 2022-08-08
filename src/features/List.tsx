@@ -64,7 +64,7 @@ export const List = () => {
 	
 	const seeSite = () => {}
 	
-	const editSite = () => {}
+	const editSite = (s: Site) => navigate(`/edit/${s.id}`)
 	
 	const deleteSite = () => {}
 
