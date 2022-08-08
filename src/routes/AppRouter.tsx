@@ -4,7 +4,7 @@ import {
 	Home,
 	Form,
 	List,
-} from './pages'
+} from '../pages'
 
 export const AppRouter = () => {
 	return (

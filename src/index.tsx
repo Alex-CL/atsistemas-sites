@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { AppRouter } from './AppRouter'
+import { AppRouter } from './routes'
 import reportWebVitals from './reportWebVitals';
 import { Layout } from './components'
 import { BrowserRouter } from 'react-router-dom'
