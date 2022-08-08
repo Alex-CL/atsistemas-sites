@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import { useNavigate } from 'react-router'
 import { AppTable, Field, Actions, Pager } from '../components'
 import { Site } from '../models'
 import { SiteService } from '../services'
@@ -10,6 +12,8 @@ import { SiteService } from '../services'
 const siteService = new SiteService();
 
 export const Searcher = () => {
+
+	const navigate = useNavigate()
 
 	const [originalItems, setOriginalItems] = useState<Site[]>([])
 	const [items, setItems] = useState<Site[]>([])
@@ -95,15 +99,24 @@ export const Searcher = () => {
             	label: 'Delete',
             }
         ],
-	}	
+	}
+	
+	const goBack = () => navigate('/')
 
 	const containerStyle = {
 		width: '80%',
 		margin: 'auto',
 	}
+	
+	const buttonStyle = {
+		marginTop: '20px',
+	}
 
 	return (
 		<Box sx={containerStyle}>
+			<Button sx={buttonStyle} variant="outlined" startIcon={<ArrowBackIcon/>} onClick={goBack}>
+				Back
+			</Button>
 			<AppTable 
 				fields={fields}
 				items={items}
