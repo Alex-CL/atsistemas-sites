@@ -6,8 +6,6 @@ export type Field<T> = {
   readonly label: string
   readonly renderFunc?: (field: Field<T>, item: T) => string | JSX.Element
   readonly styleFunc?: (field: Field<T>, item: T) => {}
-  readonly sortable?: boolean
-  readonly searchable?: boolean
 }
 
 export type Pager = {
