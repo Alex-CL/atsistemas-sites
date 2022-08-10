@@ -15,4 +15,13 @@ yarn start
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+## Tests
+
+Run the following command
+
+``` bash
+yarn test
+```
+
+to test components (only render)
 
