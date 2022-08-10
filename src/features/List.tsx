@@ -67,7 +67,10 @@ export const List = () => {
 	
 	const editSite = (s: Site) => navigate(Routes.EDIT + s.id)
 	
-	const deleteSite = () => {}
+	const deleteSite = (s: Site) => {
+		siteService.delete(s.id).then()
+		setIsLoading(true)	
+	}
 
 	const fields: Field<Site>[] = [
 		{
