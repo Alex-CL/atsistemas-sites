@@ -1,6 +1,12 @@
 import { Site, SiteDTO, toDTO, fromDTO } from '../models'
 import { IApi } from './IApi'
 
+const headers = {
+	"Access-Control-Request-Headers": "*",
+	"Access-Control-Request-Method": "POST",
+	"Content-Type": "application/json; charset=UTF-8"
+}
+
 export class SiteService implements IApi<Site> {
 	private _api: string
 	
@@ -25,20 +31,18 @@ export class SiteService implements IApi<Site> {
 	add(s: Site) {
 		fetch(`${this._api}/site`, {
 			method: 'POST',
-			body: JSON.stringify(toDTO(s)),
-			headers: {
-				"Content-Type": "application/json; charset=UTF-8"
-			}
+			body: JSON.stringify(renameKey<SiteDTO>(toDTO(s), "id", "_id")),
+			headers,
 		}).then()
 	}
 	
 	update(s: Site) {
-		fetch(`${this._api}/site`, {
+		const updateHeaders = { ...headers }
+		updateHeaders['Access-Control-Request-Method'] = 'PUT'
+		fetch(`${this._api}/site/${s.id}`, {
 			method: 'PUT',
-			body: JSON.stringify(toDTO(s)),
-			headers: {
-				"Content-Type": "application/json; charset=UTF-8"
-			}
+			body: JSON.stringify(renameKey<SiteDTO>(toDTO(s), "id", "_id")),
+			headers: updateHeaders,
 		}).then()
 	}
 	
