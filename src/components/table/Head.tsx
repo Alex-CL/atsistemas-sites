@@ -1,5 +1,5 @@
 import React from 'react'
-import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
+import { TableCell, TableHead, TableRow } from '@mui/material'
 import { Actions, Field } from './types'
 import { styled } from "@mui/material/styles";
 
