@@ -18,26 +18,6 @@ export type Pager = {
   readonly handleChangeRowsPerPage?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export type Search<T> = {
-  readonly searchValues: SearchValue<T>[]
-  readonly handleSearch: (s: SearchValue<T>[]) => void
-}
-
-export type SearchValue<T> = {
-  readonly label: string
-  readonly name: keyof T
-  value?: string
-  readonly type?: 'text' | 'number' | 'email' | 'date' | 'datetime' | 'time' | 'color'
-  readonly icon?: string
-  readonly width?: string
-}
-
-export type Sort<T> = {
-  readonly name?: string
-  readonly direction?: 'asc' | 'desc'
-  readonly handleSort?: (name: keyof T) => void
-}
-
 export type Actions<T> = {
   actionsColumn?: string
   items: ActionItem<T>[]

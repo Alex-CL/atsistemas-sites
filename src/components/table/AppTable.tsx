@@ -3,8 +3,7 @@ import { Box, Table, TableContainer } from '@mui/material'
 import { Head } from './Head'
 import { Pagination } from './Pagination'
 import { Body } from './Body'
-import { Actions, Field, Pager, Search, Sort } from './types'
-import { Searcher } from './Searcher'
+import { Actions, Field, Pager } from './types'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { ListTable } from './ListTable'
 
@@ -14,10 +13,7 @@ export type TableProps<T, Q> = {
   readonly fields: Field<T>[]
   readonly items: T[]
   readonly rowKeyField: keyof T
-
   readonly actions?: Actions<T>
-  readonly search?: Search<Q>
-  readonly sort?: Sort<T>
   readonly pager?: Pager
 }
 
@@ -26,13 +22,10 @@ export function AppTable<T extends { [key: string]: any }, Q extends { [key: str
 ) {
   return (
     <>
-      <Box display={'flex'} justifyContent={'flex-end'}>
-        {props.search && <Searcher search={props.search} />}
-      </Box>
       <TableContainer>
         {useMediaQuery('(min-width:599px)') ? (
           <Table style={{ border: 'none' }}>
-            <Head fields={props.fields} sort={props.sort} actions={props.actions} />
+            <Head fields={props.fields} actions={props.actions} />
             <Body
               actions={props.actions}
               fields={props.fields}
