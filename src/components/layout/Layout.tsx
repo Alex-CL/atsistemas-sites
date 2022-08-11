@@ -16,7 +16,7 @@ export const Layout = (props: LayoutProps) => {
 	  const paper = {
 		marginTop: '15px',
 		marginBottom: 'auto',
-		height: '700px',
+		minHeight: '700px',
 	  };
 	  
 
