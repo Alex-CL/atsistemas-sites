@@ -85,7 +85,7 @@ export const Form = (props: FormProps) => {
 		e.preventDefault()
 		
 		if (isEditing) {
-			siteService.update(fromDTO(site)).then((s) => s && goBack())
+			siteService.update(fromDTO(site)).then()
 		
 			return
 		} 
