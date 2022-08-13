@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Box, TextField, Button } from '@mui/material'
 import SaveIcon from '@mui/icons-material/Save';
-import { useLocation, useNavigate } from 'react-router'
-import { Site, SiteDTO, emptySiteDTO, fromDTO, toDTO } from '../models'
+import { useNavigate } from 'react-router'
+import { SiteDTO, emptySiteDTO, fromDTO, toDTO } from '../models'
 import { SiteService } from '../services'
 import { Routes } from '../routes'
 
@@ -15,7 +15,6 @@ type FormProps = {
 }
 
 export const Form = (props: FormProps) => {
-	const location = useLocation()
 	const navigate = useNavigate()
 	
 	const [excludedKeys, setExcludedKeys] = useState<string[]>(['id'])
