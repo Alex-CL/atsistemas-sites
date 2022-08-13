@@ -24,7 +24,7 @@ export const Form = (props: FormProps) => {
 	
 	useEffect(() => {
 		if (!props.readOnly && !props.id) {
-			setExcludedKeys([...excludedKeys, 'createDate'])
+			setExcludedKeys([...excludedKeys, 'createDate', 'site'])
 		}
 	}, [])
 	
@@ -43,7 +43,9 @@ export const Form = (props: FormProps) => {
 			return <>{new Date(site.createDate).toLocaleString()}</>
 		}
 		
-		if (props.readOnly) {
+		if (props.readOnly
+			|| (isEditing && k === 'site')) {
+			
 			return (
 				<p style={{ marginTop: '10px' }}>
 					{site[k]}
