@@ -34,7 +34,7 @@ export const Form = (props: FormProps) => {
 			return
 		}
 		
-		siteService.getByID(props.id).then((s) => setSite(toDTO(s)))
+		siteService.getByID(props.id).then((s) => s && setSite(toDTO(s)))
 	}, [isEditing])
 	
 	const setSiteChange = (k: string, v: string | Date) => setSite({ ...site, [k]: v })
@@ -84,12 +84,12 @@ export const Form = (props: FormProps) => {
 		e.preventDefault()
 		
 		if (isEditing) {
-			siteService.update(fromDTO(site))
+			siteService.update(fromDTO(site)).then((s) => s && goBack())
 		
 			return
 		} 
 		
-		siteService.add(fromDTO(site))
+		siteService.add(fromDTO(site)).then((s) => s && goBack())
 	}
 	
 	const container = {
@@ -135,7 +135,7 @@ export const Form = (props: FormProps) => {
 				</Box>
 				<Box sx={buttonContainer}>
 					<Button variant="outlined" color="secondary" onClick={goBack}>
-						Cancel
+						{isEditing ? 'Back' : 'Cancel'}
 					</Button>
 					<Button variant="outlined" endIcon={<SaveIcon />} type="submit">
 						Save

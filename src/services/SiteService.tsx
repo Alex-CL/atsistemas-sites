@@ -22,36 +22,61 @@ export class SiteService implements IApi<Site> {
 			)
 	}
 	
-	getByID(id: string): Promise<Site> {
+	getByID(id: string): Promise<Site | undefined> {
 		return fetch(`${this._api}/site/${id}`)
-			.then(res => res.json())
+			.then(res => {
+				if (res.ok) {
+					return res.json()
+				}
+				throw new Error()
+			})
 			.then(res => fromDTO(renameKey<SiteDTO>(res, "_id", "id")))
+			.catch(res => undefined)
 	}
 	
-	add(s: Site) {
-		fetch(`${this._api}/site`, {
+	add(s: Site): Promise<Site | undefined> {
+		return fetch(`${this._api}/site`, {
 			method: 'POST',
 			body: JSON.stringify(renameKey<SiteDTO>(toDTO(s), "id", "_id")),
 			headers,
-		}).then()
+		}).then(res => {
+			if (res.ok) {
+				return res.json()
+			}
+			throw new Error()
+		})
+		.then(res => fromDTO(renameKey<SiteDTO>(res, "_id", "id")))
+		.catch(res => undefined)
 	}
 	
-	update(s: Site) {
+	update(s: Site): Promise<Site | undefined> {
 		const updateHeaders = { ...headers }
 		updateHeaders['Access-Control-Request-Method'] = 'PUT'
-		fetch(`${this._api}/site/${s.id}`, {
+		return fetch(`${this._api}/site/${s.id}`, {
 			method: 'PUT',
 			body: JSON.stringify(renameKey<SiteDTO>(toDTO(s), "id", "_id")),
 			headers: updateHeaders,
-		}).then()
+		}).then(res => {
+			if (res.ok) {
+				return res.json()
+			}
+			throw new Error()
+		})
+		.then(res => fromDTO(renameKey<SiteDTO>(res, "_id", "id")))
+		.catch(res => undefined)
 	}
 	
 	delete(id: string): Promise<boolean> {
 		return fetch(`${this._api}/site/${id}`, {
 				method: 'DELETE',
 			})
-			.then(res => res.json())
-			.then(res => true)
+			.then(res => {
+				if (res.ok) {				
+					return true
+				}
+				
+				throw new Error()
+			})
 			.catch(res => false)
 	}
 }
